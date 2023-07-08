@@ -8,6 +8,7 @@ import CustomModal from '../components/Modal';
 import { resolveGenres, resolveMoviesByRating } from '../utils/functions';
 import SearchBar from '../components/SearchBar';
 import { Rating } from 'react-native-ratings';
+import EmptyList from '../components/EmptyList';
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([])
@@ -187,6 +188,7 @@ export default function Home() {
         onRefresh={fetchFirstPage}
         style={styles.flatList}
         ListFooterComponent={availableLoadMoreMovies && <FooterList onPress={showAllMovies ? fetchNextPage : fetchUserSearchNextPage} />}
+        ListEmptyComponent={<EmptyList userInput={userInput} rating={rating} />}
       />
       {modalVisible && renderCustomModal()}
     </SafeAreaView>
